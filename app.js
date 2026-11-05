@@ -30,7 +30,7 @@
     { id: 'fe1', status: 'notcleared', title: FE, subject: FE, duration: '60 min', attempt: 1,redNote: 'Not cleared' ,actions: ['notcleared','view'] },
     // { id: 'su3', status: 'cleared', title: 'Supervised_Unsupervised_B3_A1', subject: 'Supervised & Unsupervised Techniques', duration: '90 min', attempt: 3, actions: ['cleared', 'view'] },
     { id: 'py', status: 'notopen', title: 'Python Coding Assessment — Insurance Industry Dataset (Retake / Attempt 2)', subject: 'Python', duration: '100 min', attempt: 3, actions: ['closed'] },
-    { id: 'su1', status: 'notcleared', title: 'Supervised & Unsupervised Techniques', subject: 'Supervised & Unsupervised Techniques', duration: '90 min', attempt: 1, actions: ['Not cleared', 'view'] },
+    { id: 'su1', status: 'notcleared', title: 'Supervised & Unsupervised Techniques', subject: 'Supervised & Unsupervised Techniques', duration: '90 min', attempt: 1, actions: ['notcleared', 'view'] },
     { id: 'su2', status: 'cleared', title: 'Supervised & Unsupervised Techniques', subject: 'Supervised & Unsupervised Techniques', duration: '90 min', attempt: 2, actions: ['cleared', 'view'] },
     { id: 'sql', status: 'submitted', title: 'MU-SIGMA — 2026 SQL Training Program', subject: 'SQL (Advanced)', duration: '60 min', attempt: 1, actions: ['submitted'] },
     { id: 'ig0', status: 'notopen', title: 'INSIGHT GENERATION - MCQ ASSESSMENT — Instructions', subject: 'Insight Generation', duration: '60 min', attempt: 1, actions: ['closed'] },
