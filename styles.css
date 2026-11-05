@@ -72,7 +72,9 @@ button { font-family: inherit; cursor: pointer; }
 }
 .card.s-active { border: 2.5px solid var(--red); padding: 20px 20px 20px; }
 .card.s-cleared { border: 1.6px solid var(--teal-border); }
-.card.s-notcleared, .card.s-submitted { border: 1px solid var(--line); }
+.card.s-notcleared { border: 1.6px solid var(--teal-border); }
+
+.card.s-notopen, .card.s-submitted { border: 1px solid var(--line); }
 .card.s-notopen { background: #f4f2ef; border: 1px solid #e8e4df; }
 .card.s-notopen .c-title, .card.s-notopen .m-val { color: #7d7a76; }
 
