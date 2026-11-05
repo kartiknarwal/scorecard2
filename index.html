@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scorecard</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ APP SHELL (header + nav) ============ -->
+  <div id="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo"><img src="logo.png" alt="Mu Sigma Labs" height="54"></div>
+        <div class="brand-divider"></div>
+        <h1 class="app-title">Trainee Performance Scorecard<sup>V26.06.01</sup></h1>
+      </div>
+      <div class="topbar-right">
+        <span class="last-updated">Last Updated On:11/5/2026</span>
+        <span class="user-name" id="userName">Gowri M Sheety</span>
+        <svg class="user-icon" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#444" stroke-width="1.5" aria-hidden="true">
+          <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>
+        </svg>
+      </div>
+    </header>
+
+    <nav class="mainnav" aria-label="Primary">
+      <a href="#" class="navtab">Phase 0: Exploration</a>
+      <a href="#" class="navtab">Phase 1: Training</a>
+      <a href="#" class="navtab">Academic Partnership</a>
+      <a href="#" class="navtab active" id="tabAssess">My Assessments</a>
+      <a href="#" class="navtab">Phase 2: Immersion</a>
+    </nav>
+
+    <main class="content">
+
+      <!-- ====== VIEW 1: Assessment cards ====== -->
+      <section id="view-list" class="view">
+        <p class="kicker">MY ASSESSMENTS</p>
+        <h2 class="page-heading">Exams scheduled for you</h2>
+        <p class="trainee-meta" id="traineeMeta">Gowri M Shetty · Emp ID 18066 · Batch 2-C</p>
+        <div class="cards" id="cards"></div>
+        <div id="sprints"></div>
+      </section>
+
+      <!-- ====== VIEW 2: Instructions ====== -->
+      <section id="view-instructions" class="view" hidden>
+        <div class="panel">
+          <div class="panel-head">
+            <p class="kicker">EXAM INSTRUCTIONS</p>
+            <h2 class="panel-title">Frontend (HTML, CSS, JS)</h2>
+            <div class="panel-meta">
+              <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 60 min</span>
+              <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg> 25 questions</span>
+              <span>Attempt 3</span>
+            </div>
+          </div>
+          <div class="panel-body">
+            <h3 class="read-title">Please read carefully before you begin</h3>
+            <ol class="rules">
+              <li><span class="num">1</span><span>Stay in full screen for the whole exam. Leaving full screen is logged as a violation, same as switching tabs.</span></li>
+              <li><span class="num">2</span><span>Do not switch away from the exam tab or window. Tab switches and full-screen exits share one limit — the 4th one ends the exam.</span></li>
+              <li><span class="num">3</span><span>Use Next / Previous to navigate. Your answers are saved as you go.</span></li>
+              <li><span class="num">4</span><span>A countdown timer runs top-right. When it hits zero the exam submits automatically.</span></li>
+            </ol>
+
+            <div class="fs-box">
+              <div>
+                <span class="fs-chip" id="fsChip">Not enabled</span>
+                <p class="fs-note" id="fsNote">Full-screen mode is required before you can start.</p>
+              </div>
+              <button class="btn btn-brown" id="btnFs">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+                <span>Enable Full Screen</span>
+              </button>
+            </div>
+
+            <div class="panel-actions">
+              <button class="btn btn-outline" id="btnCancel">Cancel</button>
+              <button class="btn btn-brown" id="btnStart" disabled>Start Exam →</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== VIEW 4: Result ====== -->
+      <section id="view-result" class="view" hidden>
+        <div class="panel result-panel">
+          <div class="panel-head">
+            <p class="kicker">EXAM RESULT</p>
+            <h2 class="panel-title">Frontend (HTML, CSS, JS) — Attempt 3</h2>
+          </div>
+          <div class="panel-body">
+            <div class="result-top">
+              <span class="done-chip">✓ Completed</span>
+              <span class="verdict" id="resVerdict">Passed</span>
+            </div>
+            <p class="note-violation" id="resNote" hidden></p>
+            <div class="score-block">
+              <p class="score-label">MARKS SCORED</p>
+              <p class="score"><span id="resScore">0</span><span class="score-out"> / 25</span></p>
+            </div>
+            <div class="stats">
+              <div><span class="s-label">CORRECT</span><span class="s-val" id="resCorrect">0</span></div>
+              <div><span class="s-label">INCORRECT</span><span class="s-val" id="resWrong">0</span></div>
+              <div><span class="s-label">UNANSWERED</span><span class="s-val" id="resSkipped">0</span></div>
+              <div><span class="s-label">TIME TAKEN</span><span class="s-val" id="resTime">0:00</span></div>
+            </div>
+            <div class="panel-actions">
+              <span></span>
+              <button class="btn btn-brown" id="btnBack">Back to My Assessments</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ============ VIEW 3: EXAM (full screen) ============ -->
+  <div id="view-exam" hidden>
+    <header class="ex-top">
+      <div class="ex-title">
+        <p class="ex-phase">PHASE 1</p>
+        <p class="ex-name"><span class="mcq">MCQ</span>Frontend (HTML, CSS, JS)</p>
+      </div>
+      <div class="ex-right">
+        <div class="flags"><i></i><i></i><i></i><span id="flagText">0/3 tab flags</span></div>
+        <div class="timer"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="timer">60:00</span></div>
+        <button class="btn-submit" id="btnSubmit">Submit Exam</button>
+      </div>
+      <div class="progress"><div id="progressFill"></div></div>
+    </header>
+
+    <div class="ex-body">
+      <div class="ex-main">
+        <div class="ex-count"><span id="qCount">Question 1 of 25</span><span id="ansCount">0 answered</span></div>
+        <div class="q-card">
+          <p class="q-text" id="qText"></p>
+          <div class="options" id="options"></div>
+        </div>
+      </div>
+      <aside class="palette">
+        <div class="pal-head">
+          <span class="tri">▶</span>
+          <div><p class="pal-title">Question Paper</p><p class="pal-sub" id="palSub">0 of 25 answered</p></div>
+        </div>
+        <div class="pal-grid" id="palGrid"></div>
+        <ul class="legend">
+          <li><i class="sq cur"></i>Current</li>
+          <li><i class="sq ans"></i>Answered</li>
+          <li><i class="sq vis"></i>Visited</li>
+          <li><i class="sq not"></i>Not visited</li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer class="ex-foot">
+      <button class="btn-prev" id="btnPrev">← Previous</button>
+      <button class="btn-next" id="btnNext">Next →</button>
+    </footer>
+  </div>
+
+  <!-- ============ Modal ============ -->
+  <div class="modal-back" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <h3 id="mTitle"></h3>
+      <p id="mBody"></p>
+      <div class="modal-actions" id="mActions"></div>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
