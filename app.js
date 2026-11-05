@@ -17,7 +17,7 @@
   /* The Frontend card is locked (bottom of Sprint 5) until this moment, then it
      jumps to the first position as the ACTIVE exam card.  2:00 PM IST, 5 Nov 2026.
      Testing: add ?unlock=now (or ?unlock=lock) to the URL to force either state. */
-  const UNLOCK_AT = new Date('2026-11-05T08:16:00+05:30').getTime();
+  const UNLOCK_AT = new Date('2026-11-05T14:00:00+05:30').getTime();
   const forced = new URLSearchParams(location.search).get('unlock');
   const isUnlocked = () => forced === 'now' ? true : forced === 'lock' ? false : Date.now() >= UNLOCK_AT;
 
